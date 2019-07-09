@@ -11,18 +11,18 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "status")
+@Table(name = "modules")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
         allowGetters = true)
-public class Status implements Serializable {
+public class Module implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String limitation;
-
+    private String mobileNumber;
+    
     @NotBlank
     private String isActivated;
 
@@ -44,12 +44,12 @@ public class Status implements Serializable {
 		this.id = id;
 	}
 
-	public String getLimitation() {
-		return limitation;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
-	public void setLimitation(String limitation) {
-		this.limitation = limitation;
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
 	public String getIsActivated() {
@@ -76,4 +76,5 @@ public class Status implements Serializable {
 		this.updatedAt = updatedAt;
 	}
 
+	
 }

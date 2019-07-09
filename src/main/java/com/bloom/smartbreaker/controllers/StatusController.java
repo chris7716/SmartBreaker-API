@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.bloom.smartbreaker.models.Status;
 import com.bloom.smartbreaker.repositories.StatusRepository;
@@ -49,6 +51,22 @@ public class StatusController {
 
 	    Status updatedStatus = repo.save(status);
 	    return updatedStatus;
+	}
+	
+	public void  saveRmsValue(@RequestParam String id, @RequestParam String value){
+		
+	}
+	
+	@GetMapping("/notify")
+	public void sendSMS() {
+		
+		String message = "An over current has been gone through the SmartBreaker module";
+		final String uri = "http://220.247.201.241:5000/sms/send_sms.php?username=bloom.lk&password=Blo123M&src=Bloom&dst=94719397748&msg="+message;
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+
+	    System.out.println(result);
 	}
 
 }
